@@ -1,0 +1,15 @@
+table thead tr th {
+    color: rgb(223, 63, 63);
+    cursor: pointer;
+    border: 1px solid black;
+    
+}
+td {
+    border: 1px solid black;
+}
+
+
+a {
+    color: blue;
+    text-decoration: none;
+}
