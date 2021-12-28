@@ -47,6 +47,7 @@ INSERT INTO `club`(`id`, `club_name`, `league`, `country`) VALUES (1, 'Arsenal',
 INSERT INTO `venue`(`id`, `venue_name`, `capacity`) VALUES (1, 'Emirates', '38,419'), (2, 'Stamford Bridge', '41,837'),  (3, 'Tottenham Hotspur Stadium', '62,850'), (4, 'PHX Arena', '18,422'), (5, 'Chase Center', '18,064'), (6, 'Staples Center', '19,079');
 
 INSERT INTO `event`(`_clubIdHost`, `_clubIdGuest`, `_sportCategoryId`, `_venueId`, `datetime`) VALUES (1,2,1,1,'2021-12-12 14:00:00');
+INSERT INTO `event`(`_clubIdHost`, `_clubIdGuest`, `_sportCategoryId`, `_venueId`, `datetime`) VALUES (4,5,2,4,'2021-11-05 13:00:00');
 
 
 
