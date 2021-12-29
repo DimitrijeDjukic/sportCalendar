@@ -34,7 +34,7 @@ $result = $crud->getData($query);
 </head>
 
 <body>
-<a href="add.html">Add New Data</a><br/><br/>
+<a href="add_form.php">Add New Data</a><br/><br/>
 
 <table id="ceo" width='80%'>
     <thead>

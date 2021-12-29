@@ -7,12 +7,24 @@ $crud = new Crud();
 //getting id from url
 $id = $crud->escape_string($_GET['id']);
 
+
+
 //selecting data associated with this particular id
 $result = $crud->getData("SELECT * FROM event WHERE id=$id");
 
+$query = "SELECT id, club_name FROM `club`";
+$clubs = $crud->getData($query);
+
+$query = "SELECT id, sportCategory_name FROM `sportCategory` ORDER BY sportCategory_name, id DESC";
+$categories = $crud->getData($query);
+
+$query = "SELECT id, venue_name FROM `venue` ORDER BY venue_name, id DESC";
+$venues = $crud->getData($query);
+
+
 foreach ($result as $res) {
-	$hostName = $res['hostName'];
-	$guestName = $res['guestName'];
+	$hostName = $res['_clubIdHost'];
+	$guestName = $res['_clubIdGuest'];
 	$sportCategoryName = $res['sportCategoryName'];
     $venueName = $res['venueName'];
     $datetime = $res['datetime'];
@@ -21,6 +33,7 @@ foreach ($result as $res) {
 <html>
 <head>	
 	<title>Edit Data</title>
+    <link rel="stylesheet" href="css/myStyle.css">
 </head>
 
 <body>
@@ -29,21 +42,45 @@ foreach ($result as $res) {
 	
 	<form name="form1" method="post" action="editaction.php">
 		<table>
-        <tr> 
+            <tr> 
                 <td>Host</td>
-                <td><input type="text" name="hostName" placeholder="1"></td>
+                <td>
+                <select name="hostName">
+                    <?php foreach ($clubs as $key => $row) { ?>
+                        <option value="<?php echo $row['id']; ?>" <?php if($hostName == $row['id']) echo 'selected' ?>><?php echo $row['club_name']; ?></option>
+                    <?php } ?>
+                </select>  
+                </td>
             </tr>
             <tr> 
                 <td>Guest</td>
-                <td><input type="text" name="guestName" placeholder="2"></td>
+                <td>
+                <select name="guestName">
+                    <?php foreach ($clubs as $key => $row) { ?>
+                        <option value="<?php echo $row['id']; ?>" <?php if($guestName == $row['id']) echo 'selected' ?>><?php echo $row['club_name']; ?></option>
+                    <?php } ?>
+                </select>  
+            </td>
             </tr>
             <tr> 
                 <td>Sport</td>
-                <td><input type="text" name="sportCategoryName" placeholder="1"></td>
+                <td>
+                <select name="hostName">
+                    <?php foreach ($categories as $key => $row) { ?>
+                        <option value="<?php echo $row['id']; ?>" <?php if($sportCategoryName == $row['id']) echo 'selected' ?>><?php echo $row['sportCategory_name']; ?></option>
+                    <?php } ?>
+                </select>      
+                </td>
             </tr>
             <tr> 
                 <td>Venue</td>
-                <td><input type="text" name="venueName" placeholder="1"></td>
+                <td>
+                    <select name="venueName">
+                        <?php foreach ($venues as $key => $row) { ?>
+                            <option value="<?php echo $row['id']; ?>" <?php if($venueName == $row['id']) echo 'selected' ?>><?php echo $row['venue_name']; ?></option>
+                        <?php } ?>
+                    </select>  
+                </td>
             </tr>
             <tr> 
                 <td>Date</td>
